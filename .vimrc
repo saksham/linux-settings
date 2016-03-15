@@ -1,8 +1,54 @@
-" Enable pathogen
-call pathogen#infect()
-Helptags
-syntax on
-set number
+" required by Vundle
+set nocompatible
+filetype off
+
+" add runtime path to include Vundle and initalize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" now add plugins
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" reactive stuff after vunlde has completed
+call vundle#end()
+
+" Nerdtree configuration
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
 filetype plugin indent on
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" enable syntax highlighting
+syntax enable
+
+" show line numbers
+set number
+
+" set tabs to have 4 spaces
+set ts=4
+
+" indent when moving to the next line while writing code
+set autoindent
+
+" expand tabs into spaces
+set expandtab
+
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
+
+" show a visual line under the cursor's current line 
+set cursorline
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+set encoding=utf-8
