@@ -2,6 +2,7 @@
 set nocompatible
 filetype off
 
+" Make sure you install vundle first: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " add runtime path to include Vundle and initalize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
