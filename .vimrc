@@ -29,8 +29,10 @@ filetype plugin indent on
 " enable syntax highlighting
 syntax enable
 
-" show line numbers
+" Toggle relative and absolute numbers when moving or inserting
 set number
+set relativenumber!
+
 
 " set tabs to have 4 spaces
 set ts=4
