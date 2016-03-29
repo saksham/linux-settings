@@ -17,6 +17,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Shougo/unite.vim'
 
 " reactive stuff after vunlde has completed
 call vundle#end()
@@ -32,6 +33,18 @@ syntax enable
 set relativenumber
 set number
 
+" Easier navigation through the windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Set default split locations
+set splitbelow
+set splitright
+
+" Buffer switching
+nnoremap <C-p> :Unite buffer<cr>
 
 " set tabs to have 4 spaces
 set ts=4
