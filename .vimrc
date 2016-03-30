@@ -6,7 +6,6 @@ filetype off
 " add runtime path to include Vundle and initalize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
@@ -15,6 +14,9 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Shougo/unite.vim'
+Plugin 'fholgado/minibufexpl.vim'
+
 
 call vundle#end()            " required
 
@@ -59,8 +61,6 @@ set ts=4
 set shiftwidth=4
 set encoding=utf-8
 
-
-
 set relativenumber
 set cursorline "cursorcolumn"
 
@@ -75,6 +75,8 @@ nmap <silent> <A-Right> :wincmd l<CR>
 map <C-n> :NERDTreeToggle<CR>
 " Close VIM if only buffer that's left is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeChDirMode=2
+
 
 """"" Buffer management
 " Move to the previous buffer with "gp"
@@ -86,4 +88,19 @@ nnoremap gl :ls<CR>
 " List all possible buffers with "gb" and accept a new buffer argument [1]
 nnoremap gb :ls<CR>:b
 set autochdir
-let NERDTreeChDirMode=2
+
+" Set default split locations
+set splitbelow
+set splitright
+
+
+""""" Unite buffer settings
+nnoremap <C-p> :Unite file buffer<cr>
+
+"""" MiniBufExpl colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
