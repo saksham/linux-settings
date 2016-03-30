@@ -7,64 +7,83 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" now add plugins
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
+Plugin 'L9'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'kien/ctrlp.vim.git'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Shougo/unite.vim'
 
-" reactive stuff after vunlde has completed
-call vundle#end()
+call vundle#end()            " required
 
-" Nerdtree configuration
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 filetype plugin indent on
-
-" enable syntax highlighting
-syntax enable
-
-set relativenumber
-set number
-
-" Easier navigation through the windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Set default split locations
-set splitbelow
-set splitright
-
-" Buffer switching
-nnoremap <C-p> :Unite buffer<cr>
-
-" set tabs to have 4 spaces
-set ts=4
-
-" indent when moving to the next line while writing code
-set autoindent
-
-" expand tabs into spaces
-set expandtab
-
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
-
-" show a visual line under the cursor's current line 
-set cursorline
-
-" show the matching part of the pair for [] {} and ()
-set showmatch
-
-" enable all Python syntax highlighting features
+syntax on
 let python_highlight_all = 1
 
+"Set the status line options. Make it show more information.
+set laststatus=2
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+"Set Color Scheme and Font Options
+colorscheme solarized
+set guifont=Consolas:h12
+"set line no, buffer, search, highlight, autoindent and more.
+set nu
+set hidden
+set ignorecase
+set incsearch
+set smartcase
+set showmatch
+set autoindent
+set ruler
+set vb
+set viminfo+=n$VIM/_viminfo
+set noerrorbells
+set showcmd
+set mouse=a
+set history=1000
+set undolevels=1000
+set ts=4
+set shiftwidth=4
 set encoding=utf-8
+
+
+
+set relativenumber
+set cursorline "cursorcolumn"
+
+" Navigate windows with Alt + arrow keys
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+""""""" Nerd Tree settings
+" Open NERDTree with CTRL+n
+map <C-n> :NERDTreeToggle<CR>
+" Close VIM if only buffer that's left is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+""""" Buffer management
+" Move to the previous buffer with "gp"
+nnoremap gp :bp<CR>
+" Move to the next buffer with "gn"
+nnoremap gn :bn<CR>
+" List all possible buffers with "gl"
+nnoremap gl :ls<CR>
+" List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
+set autochdir
+let NERDTreeChDirMode=2
