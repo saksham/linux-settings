@@ -112,3 +112,12 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # Set VIM as the default SVN editor
 export SVN_EDITOR=/usr/bin/vim
 alias ls="ls -F"
+
+
+# SSH-Agent settings so that it asks for the keyphrase only once
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add
